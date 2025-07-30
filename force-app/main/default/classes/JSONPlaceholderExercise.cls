@@ -10,11 +10,17 @@ public class JSONPlaceholderExercise {
     public static String getPostById(Integer postId) {
         // TODO: Student Implementation
         // 1. Create a new HTTP request
+        Http http = new Http();
         // 2. Set the endpoint URL using BASE_URL + '/posts/' + postId
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(BASE_URL + '/posts/' + postId);
         // 3. Set the HTTP method to 'GET'
+        request.setMethod('GET');
         // 4. Send the request and get the response
+        HttpResponse response = Http.send(request);
         // 5. Return the response body as string
-        return null;
+        string res = response.getBody();
+        return res;
     }
     
     /**
@@ -28,13 +34,25 @@ public class JSONPlaceholderExercise {
     public static String createPost(String title, String body, Integer userId) {
         // TODO: Student Implementation
         // 1. Create a new HTTP request
+         Http http = new Http();
         // 2. Set the endpoint URL using BASE_URL + '/posts'
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(BASE_URL + '/posts');
         // 3. Set the HTTP method to 'POST'
+        request.setMethod('POST');
         // 4. Create a JSON string with the post data
+         Map<String, Object> postData = new Map<String, Object>{
+            'title' => title,
+            'body' => body,
+            'userId' => userId
+         };
+          String jsonBody = JSON.serialize(postData);
         // 5. Set the request body
+        request.setBody(jsonBody);
         // 6. Send the request and get the response
+        HttpResponse response = Http.send(request);
         // 7. Return the response body as string
-        return null;
+        return response.getBody();
     }
     
     /**
@@ -49,13 +67,26 @@ public class JSONPlaceholderExercise {
     public static String updatePost(Integer postId, String title, String body, Integer userId) {
         // TODO: Student Implementation
         // 1. Create a new HTTP request
+        Http http = new Http();
         // 2. Set the endpoint URL using BASE_URL + '/posts/' + postId
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(BASE_URL + '/posts/' + postId);
         // 3. Set the HTTP method to 'PUT'
+        request.setMethod('PUT');
         // 4. Create a JSON string with the updated post data
+        Map<String, Object> postData = new Map<String, Object>{
+            'Id' => postId,
+            'title' => title,
+            'body' => body,
+            'userId' => userId
+         };
+          String jsonBody = JSON.serialize(postData);
         // 5. Set the request body
+        request.setBody(jsonBody);
         // 6. Send the request and get the response
+        HttpResponse response = Http.send(request);
         // 7. Return the response body as string
-        return null;
+        return response.getBody();
     }
     
     /**
@@ -68,13 +99,24 @@ public class JSONPlaceholderExercise {
     public static String patchPostTitle(Integer postId, String title) {
         // TODO: Student Implementation
         // 1. Create a new HTTP request
+        Http http = new Http();
         // 2. Set the endpoint URL using BASE_URL + '/posts/' + postId
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(BASE_URL + '/posts/' + postId);
         // 3. Set the HTTP method to 'PATCH'
+        request.setMethod('PATCH');
         // 4. Create a JSON string with only the title
+        Map<String, Object> postData = new Map<String, Object>{
+            'id' => postId,
+            'title' => title
+         };
+          String jsonBody = JSON.serialize(postData);
         // 5. Set the request body
+        request.setBody(jsonBody);
         // 6. Send the request and get the response
+        HttpResponse response = Http.send(request);
         // 7. Return the response body as string
-        return null;
+        return response.getBody();
     }
     
     /**
@@ -86,10 +128,15 @@ public class JSONPlaceholderExercise {
     public static Integer deletePost(Integer postId) {
         // TODO: Student Implementation
         // 1. Create a new HTTP request
+        http http = new http();
         // 2. Set the endpoint URL using BASE_URL + '/posts/' + postId
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(BASE_URL + '/posts/' + postId);
         // 3. Set the HTTP method to 'DELETE'
+        request.setMethod('DELETE');
         // 4. Send the request and get the response
+        HttpResponse response = http.send(request);
         // 5. Return the response status code
-        return null;
+        return response.getStatusCode();
     }
 } 
